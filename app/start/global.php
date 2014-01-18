@@ -10,14 +10,11 @@
 | your classes in the "global" namespace without Composer updating.
 |
 */
-
 ClassLoader::addDirectories(array(
-
 	app_path().'/commands',
 	app_path().'/controllers',
 	app_path().'/models',
-	app_path().'/database/seeds',
-
+	app_path().'/database/seeds'
 ));
 
 /*
@@ -30,7 +27,6 @@ ClassLoader::addDirectories(array(
 | build a basic log file setup which creates a single file for logs.
 |
 */
-
 Log::useFiles(storage_path().'/logs/laravel.log');
 
 /*
@@ -45,9 +41,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 | shown, which includes a detailed stack trace during debug.
 |
 */
-
-App::error(function(Exception $exception, $code)
-{
+App::error(function(Exception $exception, $code) {
 	Log::error($exception);
 });
 
@@ -61,9 +55,7 @@ App::error(function(Exception $exception, $code)
 | to the user if maintenance mode is in effect for the application.
 |
 */
-
-App::down(function()
-{
+App::down(function() {
 	return Response::make("Be right back!", 503);
 });
 
@@ -77,5 +69,4 @@ App::down(function()
 | definitions instead of putting them all in the main routes file.
 |
 */
-
 require app_path().'/filters.php';
