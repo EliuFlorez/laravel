@@ -1,36 +1,50 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 
 class HomeController extends Controller {
+    /*
+      |--------------------------------------------------------------------------
+      | Home Controller
+      |--------------------------------------------------------------------------
+      |
+      | This controller renders your application's "dashboard" for users that
+      | are authenticated. Of course, you are free to change or remove the
+      | controller as you wish. It is just here to get your app started!
+      |
+     */
 
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders your application's "dashboard" for users that
-	| are authenticated. Of course, you are free to change or remove the
-	| controller as you wish. It is just here to get your app started!
-	|
-	*/
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct() {
+        /** Comantamos el Middleware solo para poder acceder el controlador sin tener que loguearnos **/
+        //$this->middleware('auth');
+    }
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
-
-	/**
-	 * Show the application dashboard to the user.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return view('home');
-	}
+    /**
+     * Show the application dashboard to the user.
+     *
+     * @return Response
+     */
+    public function index() {
+        return view('home');
+    }
+    
+    public function create(){
+        return view('createPost');
+    }
+    
+    public function store(Request $request){
+        $post = $this->dispatch('CreateArticleCommand', [
+            'title' => $request->get('title'),
+            'body' => $request->get('body')
+        ]);
+        dd($post);
+    }
 
 }

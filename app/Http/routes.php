@@ -15,6 +15,9 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::get('addPost', 'HomeController@create');
+Route::post('addPost', 'HomeController@store');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

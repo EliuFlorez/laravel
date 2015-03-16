@@ -1,14 +1,16 @@
-<?php namespace App\Commands;
+<?php
+
+namespace App\Commands;
 
 use App\Commands\Command;
-
 use Illuminate\Contracts\Bus\SelfHandling;
+use App\Services\Posts\PostModel;
 
 class CreateArticleCommand extends Command implements SelfHandling {
 
-	private $title;
+    private $title;
     private $body;
-    
+
     /**
      * Create a new command instance.
      *
@@ -26,8 +28,8 @@ class CreateArticleCommand extends Command implements SelfHandling {
      */
     public function handle() {
         return PostModel::create([
-            'title' => $$this->title,
-            'body' => $this->body
+                    'title' => $$this->title,
+                    'body' => $this->body
         ]);
     }
 
