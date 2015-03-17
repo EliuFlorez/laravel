@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Commands\CreateArticleCommand;
 
 class HomeController extends Controller {
     /*
@@ -40,11 +41,8 @@ class HomeController extends Controller {
     }
     
     public function store(Request $request){
-        $post = $this->dispatch('CreateArticleCommand', [
-            'title' => $request->get('title'),
-            'body' => $request->get('body')
-        ]);
-        dd($post);
+        $post = $this->dispatch(new CreateArticleCommand($request->get('title'), $request->get('body')));
+        dd($post->toArray());
     }
 
 }

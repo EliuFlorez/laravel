@@ -28,7 +28,7 @@ class CreateArticleCommand extends Command implements SelfHandling {
      */
     public function handle() {
         return PostModel::create([
-                    'title' => $$this->title,
+                    'title' => $this->title,
                     'body' => $this->body
         ]);
     }
