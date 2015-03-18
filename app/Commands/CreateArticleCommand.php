@@ -5,6 +5,7 @@ namespace App\Commands;
 use App\Commands\Command;
 use Illuminate\Contracts\Bus\SelfHandling;
 use App\Services\Posts\PostModel;
+use App\Events\ArticleWasCreated;
 
 class CreateArticleCommand extends Command implements SelfHandling {
 
@@ -27,10 +28,12 @@ class CreateArticleCommand extends Command implements SelfHandling {
      * @return void
      */
     public function handle() {
-        return PostModel::create([
+        $post = PostModel::create([
                     'title' => $this->title,
                     'body' => $this->body
         ]);
+        return event(new ArticleWasCreated($post));
     }
+    
 
 }

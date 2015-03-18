@@ -41,8 +41,8 @@ class HomeController extends Controller {
     }
     
     public function store(Request $request){
-        $post = $this->dispatch(new CreateArticleCommand($request->get('title'), $request->get('body')));
-        dd($post->toArray());
+        $this->dispatchFrom('App\Commands\CreateArticleCommand', $request);
+        return redirect()->back();
     }
 
 }
