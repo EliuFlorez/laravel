@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Commands\CreateArticleCommand;
+use App\Http\Requests\CreateArticleRequest;
 
 class HomeController extends Controller {
     /*
@@ -40,7 +41,7 @@ class HomeController extends Controller {
         return view('createPost');
     }
     
-    public function store(Request $request){
+    public function store(CreateArticleRequest $request){
         $this->dispatchFrom('App\Commands\CreateArticleCommand', $request);
         return redirect()->back();
     }
