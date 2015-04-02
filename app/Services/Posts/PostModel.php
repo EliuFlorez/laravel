@@ -12,6 +12,6 @@ use Illuminate\Database\Eloquent\Model;
 class PostModel extends Model{
     
     protected $table = "posts";
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'published_at'];
     
 }

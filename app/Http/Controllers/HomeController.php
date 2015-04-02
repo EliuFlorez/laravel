@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Commands\CreateArticleCommand;
 use App\Http\Requests\CreateArticleRequest;
 
+
 class HomeController extends Controller {
     /*
       |--------------------------------------------------------------------------
@@ -23,8 +24,9 @@ class HomeController extends Controller {
      *
      * @return void
      */
-    public function __construct() {
-        /** Comantamos el Middleware solo para poder acceder el controlador sin tener que loguearnos **/
+    public function __construct()
+    {
+        /** Comantamos el Middleware solo para poder acceder el controlador sin tener que loguearnos * */
         //$this->middleware('auth');
     }
 
@@ -33,15 +35,18 @@ class HomeController extends Controller {
      *
      * @return Response
      */
-    public function index() {
+    public function index()
+    {
         return view('home');
     }
-    
-    public function create(){
+
+    public function create()
+    {
         return view('createPost');
     }
-    
-    public function store(CreateArticleRequest $request){
+
+    public function store(CreateArticleRequest $request)
+    {
         $this->dispatchFrom('App\Commands\CreateArticleCommand', $request);
         return redirect()->back();
     }
