@@ -6,7 +6,7 @@ use App\Events\ArticleWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldBeQueued;
 
-class SendEmailToAdmin {
+class SendEmailToAdmin implements ShouldBeQueued {
 
     /**
      * Create the event handler.
