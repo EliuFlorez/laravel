@@ -8,6 +8,8 @@ use Illuminate\Contracts\Queue\ShouldBeQueued;
 
 class SendEmailToAdmin {
 
+    use InteractsWithQueue;
+    
     /**
      * Create the event handler.
      *
